@@ -1,5 +1,7 @@
 package control;
 
+import com.autsia.bracer.BracerParser;
+
 import display.FrameCore;
 import javacalculus.core.CALC;
 import javacalculus.core.CalcParser;
@@ -22,10 +24,21 @@ public class TaskMain
 {
 	public static void main(String[] args) 
 	{
-		//new FrameCore();
+		new FrameCore();
 
 		try
 		{
+			BracerParser bracerParser = new BracerParser(3);
+			bracerParser.parse("sin(0");
+			System.out.println(bracerParser.evaluate());
+			
+
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		
 			/*
 			String function = "PLOT(sin(x),x)";
 			CalculusEngine cengine = new CalculusEngine();
@@ -73,17 +86,6 @@ public class TaskMain
 			System.out.println(result4.evaluate().toString());
 			*/
 			
-			System.out.println(new CalculusEngine().execute("sin(0)"));
-		}
-		/*
-		catch(CalcSyntaxException cse)
-		{
-			cse.printStackTrace();
-		}
-		*/
-		catch(Exception e)
-		{
-			e.printStackTrace();
-		}
+			//System.out.println(new CalculusEngine().execute("sin(0)"));
 	}
 }
