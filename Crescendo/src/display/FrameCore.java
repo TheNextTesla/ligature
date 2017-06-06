@@ -15,6 +15,7 @@ import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
 import control.Configuration;
+import music.MusicHandler;
 
 public class FrameCore extends JFrame
 {
@@ -92,21 +93,27 @@ public class FrameCore extends JFrame
 					@Override
 					public void actionPerformed(ActionEvent e) 
 					{
-						if(baseButton.isSelected())
+						if(!equationEntry.getText().equals(""))
 						{
-							
-						}
-						else if(diffButton.isSelected())
-						{
-							
-						}
-						else if(intButton.isSelected())
-						{
-							
-						}
-						else
-						{
-							JOptionPane.showMessageDialog(null, Configuration.POPUP_WINDOW_NOTICE);
+							if(baseButton.isSelected())
+							{
+								MusicHandler musicHandler = new MusicHandler(equationEntry.getText());
+								musicHandler.evaluate();
+							}
+							else if(diffButton.isSelected())
+							{
+								MusicHandler musicHandler = new MusicHandler("DIFF(" + equationEntry.getText() + ",x)");
+								musicHandler.evaluate();
+							}
+							else if(intButton.isSelected())
+							{
+								MusicHandler musicHandler = new MusicHandler("INT(" + equationEntry.getText() + ",x)");
+								musicHandler.evaluate();
+							}
+							else
+							{
+								JOptionPane.showMessageDialog(null, Configuration.POPUP_WINDOW_NOTICE);
+							}
 						}
 					}
 				});

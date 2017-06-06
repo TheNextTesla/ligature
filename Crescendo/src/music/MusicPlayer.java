@@ -10,7 +10,7 @@ public class MusicPlayer
 		fvalues = values;
 		double maxvalue = 0;
 		double minvalue = 0;
-		String[] notes = new String[fvalues.length];
+		String string = "";
 		for(int i = 0; i<fvalues.length; i++)
 		{
 			if(fvalues[i]> maxvalue)
@@ -25,31 +25,42 @@ public class MusicPlayer
 			}
 				
 		}
-		for(int i =0; i<fvalues.length; i++)
+		for(int i = 0; i < fvalues.length; i++)
 		{
 			int tempint = (int) Math.ceil((fvalues[i]-minvalue)/maxvalue*7);
+			//System.out.println(tempint);
 			switch(tempint)
 			{
 			case 1:
-				notes[i] = "C";
+				string += "C ";
+				break;
 			case 2:
-				notes[i] = "D";
+				string += "D ";
+				break;
 			case 3:
-				notes[i] = "E";
+				string += "E ";
+				break;
 			case 4:
-				notes[i] = "F";
+				string += "F ";
+				break;
 			case 5:
-				notes[i] = "G";
+				string += "G ";
+				break;
 			case 6:
-				notes[i] = "A";
+				string += "A ";
+				break;
 			case 7:
-				notes[i] = "B";
+				string += "B ";
+				break;
+			default:
+				string += "C ";
+				break;
 			}
-			
-				
+			System.out.println(tempint);
 		}
 		
+		System.out.println(string);
 		Player player = new Player();
-		player.play(notes);
+		player.play(string);
 	}
 }

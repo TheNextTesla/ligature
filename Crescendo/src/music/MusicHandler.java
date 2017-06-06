@@ -16,13 +16,13 @@ public class MusicHandler
 	private String string;
 	private double[] values;
 	
-	MusicHandler(String instring)
+	public MusicHandler(String instring)
 	{
 		string = instring;
-		values = new double[20];					
+		values = new double[21];					
 	}
 	
-	void evaluate()
+	public void evaluate()
 	{
 		CalcParser calcParser = new CalcParser();
 		CalcObject parsed = null;
@@ -47,7 +47,7 @@ public class MusicHandler
 		}
 		
 		
-		for(int i = 0; i <20; i++)
+		for(int i = 0; i < values.length; i++)
 		{
 			BracerParser bracerParser = new BracerParser(5);
 			CalcObject result = CalcSUB.numericSubstitute(evaluated, new CalcSymbol("x", new CalcNullEvaluator(), 0x0400), new CalcDouble(i));
@@ -60,9 +60,8 @@ public class MusicHandler
 			{
 				values[i] = 0;
 			}
-						
 		}
-		new MusicPlayer(values);
 		
+		new MusicPlayer(values);
 	}
 }
