@@ -18,8 +18,25 @@ public class MusicHandler
 	
 	public MusicHandler(String instring)
 	{
-		string = instring;
+		string = stringSkim(instring);
 		values = new double[21];					
+	}
+	
+	private String stringSkim(String skim)
+	{
+		String stringTemp = "";
+		for(int i = 0; i < skim.length(); i++)
+		{
+			if(!skim.substring(i, i+1).equals("x"))
+			{
+				stringTemp += skim.substring(i, i+1).toUpperCase();
+			}
+			else
+			{
+				stringTemp += "x";
+			}
+		}
+		return stringTemp;
 	}
 	
 	public void evaluate()
