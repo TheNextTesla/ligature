@@ -2,12 +2,17 @@ package music;
 
 import org.jfugue.player.Player;
 
-public class MusicPlayer
+public class MusicPlayer extends Thread
 {
 	private double[] fvalues;
+	
 	MusicPlayer(double[] values)
 	{
 		fvalues = values;
+	}
+	
+	public void run()
+	{
 		double maxvalue = 0;
 		double minvalue = 0;
 		String string = "";
@@ -56,10 +61,10 @@ public class MusicPlayer
 				string += "C ";
 				break;
 			}
-			System.out.println(tempint);
+			System.out.print(tempint + "");
 		}
 		
-		System.out.println(string);
+		System.out.println("\n" + string);
 		Player player = new Player();
 		player.play(string);
 	}

@@ -98,17 +98,17 @@ public class FrameCore extends JFrame
 							if(baseButton.isSelected())
 							{
 								MusicHandler musicHandler = new MusicHandler(equationEntry.getText());
-								musicHandler.evaluate();
+								musicHandler.evaluateBase();
 							}
 							else if(diffButton.isSelected())
 							{
 								MusicHandler musicHandler = new MusicHandler("DIFF(" + equationEntry.getText() + ",x)");
-								musicHandler.evaluate();
+								musicHandler.evaluateCalc();
 							}
 							else if(intButton.isSelected())
 							{
 								MusicHandler musicHandler = new MusicHandler("INT(" + equationEntry.getText() + ",x)");
-								musicHandler.evaluate();
+								musicHandler.evaluateCalc();
 							}
 							else
 							{

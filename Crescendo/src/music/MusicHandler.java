@@ -36,10 +36,52 @@ public class MusicHandler
 				stringTemp += "x";
 			}
 		}
+		System.out.println(stringTemp);
 		return stringTemp;
 	}
 	
-	public void evaluate()
+	private String stringSkimReverse(String skim)
+	{
+		String stringTemp = "";
+		for(int i = 0; i < skim.length(); i++)
+		{
+			if(!skim.substring(i, i+1).equals("x") && ((skim.charAt(i) < '0') || (skim.charAt(i) > '9')))
+			{
+				System.out.println("Lower");
+				stringTemp += skim.substring(i, i+1).toLowerCase();
+			}
+			else
+			{
+				stringTemp += skim.substring(i, i+1);
+			}
+		}
+		System.out.println(stringTemp);
+		return stringTemp;
+	}
+	
+	public void evaluateBase()
+	{
+		String localString = stringSkimReverse(string).replaceAll("x", "var");
+		for(int i = 0; i < values.length; i++)
+		{
+			BracerParser bracerParser = new BracerParser(5);
+			try
+			{
+				bracerParser.parse(localString);
+				values[i] = Double.parseDouble(bracerParser.evaluate(i).replaceAll(",", ""));
+			}
+			catch(Exception e)
+			{
+				e.printStackTrace();
+				values[i] = 0;
+			}
+			System.out.println(values[i]);
+		}
+		
+		new MusicPlayer(values).start();;
+	}
+	
+	public void evaluateCalc()
 	{
 		CalcParser calcParser = new CalcParser();
 		CalcObject parsed = null;
@@ -60,6 +102,7 @@ public class MusicHandler
 		
 		if(parsed == null || evaluated == null)
 		{
+			System.out.println("Error - Parse Failed");
 			return;
 		}
 		
@@ -68,17 +111,19 @@ public class MusicHandler
 		{
 			BracerParser bracerParser = new BracerParser(5);
 			CalcObject result = CalcSUB.numericSubstitute(evaluated, new CalcSymbol("x", new CalcNullEvaluator(), 0x0400), new CalcDouble(i));
+			System.out.println(result.toString());
 			try
 			{
-				bracerParser.parse(result.toString());
+				bracerParser.parse(stringSkimReverse(result.toString()));
 				values[i] = Double.parseDouble(bracerParser.evaluate());
 			}
 			catch(Exception e)
 			{
+				e.printStackTrace();
 				values[i] = 0;
 			}
 		}
 		
-		new MusicPlayer(values);
+		new MusicPlayer(values).start();;
 	}
 }
