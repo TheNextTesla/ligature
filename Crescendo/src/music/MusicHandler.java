@@ -1,7 +1,5 @@
 package music;
 
-import com.autsia.bracer.BracerParser;
-
 import javacalculus.core.CalcParser;
 import javacalculus.core.CalculusEngine;
 import javacalculus.evaluator.CalcSUB;
@@ -18,67 +16,8 @@ public class MusicHandler
 	
 	public MusicHandler(String instring)
 	{
-		string = stringSkim(instring);
+		string = instring;
 		values = new double[21];					
-	}
-	
-	private String stringSkim(String skim)
-	{
-		String stringTemp = "";
-		for(int i = 0; i < skim.length(); i++)
-		{
-			if(!skim.substring(i, i+1).equals("x"))
-			{
-				stringTemp += skim.substring(i, i+1).toUpperCase();
-			}
-			else
-			{
-				stringTemp += "x";
-			}
-		}
-		System.out.println(stringTemp);
-		return stringTemp;
-	}
-	
-	private String stringSkimReverse(String skim)
-	{
-		String stringTemp = "";
-		for(int i = 0; i < skim.length(); i++)
-		{
-			if(!skim.substring(i, i+1).equals("x") && ((skim.charAt(i) < '0') || (skim.charAt(i) > '9')))
-			{
-				System.out.println("Lower");
-				stringTemp += skim.substring(i, i+1).toLowerCase();
-			}
-			else
-			{
-				stringTemp += skim.substring(i, i+1);
-			}
-		}
-		System.out.println(stringTemp);
-		return stringTemp;
-	}
-	
-	public void evaluateBase()
-	{
-		String localString = stringSkimReverse(string).replaceAll("x", "var");
-		for(int i = 0; i < values.length; i++)
-		{
-			BracerParser bracerParser = new BracerParser(5);
-			try
-			{
-				bracerParser.parse(localString);
-				values[i] = Double.parseDouble(bracerParser.evaluate(i).replaceAll(",", ""));
-			}
-			catch(Exception e)
-			{
-				e.printStackTrace();
-				values[i] = 0;
-			}
-			System.out.println(values[i]);
-		}
-		
-		new MusicPlayer(values).start();;
 	}
 	
 	public void evaluateCalc()
@@ -109,13 +48,12 @@ public class MusicHandler
 		
 		for(int i = 0; i < values.length; i++)
 		{
-			BracerParser bracerParser = new BracerParser(5);
 			CalcObject result = CalcSUB.numericSubstitute(evaluated, new CalcSymbol("x", new CalcNullEvaluator(), 0x0400), new CalcDouble(i));
 			System.out.println(result.toString());
 			try
 			{
-				bracerParser.parse(stringSkimReverse(result.toString()));
-				values[i] = Double.parseDouble(bracerParser.evaluate());
+
+				values[i] = Double.parseDouble(result.evaluate().toString());
 			}
 			catch(Exception e)
 			{
