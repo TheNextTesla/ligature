@@ -30,7 +30,7 @@ public class MusicPlayer extends Thread
 			}
 				
 		}
-		for(int i = 0; i < fvalues.length; i++)
+		for(int i = 0; i < fvalues.length - 1; i++)
 		{
 			int tempint = (int) Math.ceil((fvalues[i]-minvalue)/maxvalue*7);
 			//System.out.println(tempint);

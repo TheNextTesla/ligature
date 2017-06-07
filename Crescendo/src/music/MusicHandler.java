@@ -1,7 +1,9 @@
 package music;
 
+import javax.swing.JOptionPane;
+
+import control.Configuration;
 import javacalculus.core.CalcParser;
-import javacalculus.core.CalculusEngine;
 import javacalculus.evaluator.CalcPLOT;
 import javacalculus.evaluator.CalcSUB;
 import javacalculus.evaluator.extend.CalcNullEvaluator;
@@ -19,7 +21,7 @@ public class MusicHandler
 	public MusicHandler(String instring)
 	{
 		string = fixcase(instring);
-		values = new double[21];
+		values = new double[Configuration.NUMBER_OF_RUNS];
 	}
 	
 	private String fixcase(String instring)
@@ -62,6 +64,7 @@ public class MusicHandler
 		{
 			System.out.println("Error - Parse Failed");
 			System.out.println(string);
+			JOptionPane.showMessageDialog(null, Configuration.POPUP_ERROR_NOTICE);
 			return;
 		}
 		
