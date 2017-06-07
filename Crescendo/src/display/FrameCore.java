@@ -29,10 +29,10 @@ public class FrameCore extends JFrame
 	
 	private JLabel informLabel;
 	private JTextField equationEntry;
-	private JRadioButton baseButton;
-	private JRadioButton diffButton;
-	private JRadioButton intButton;
-	private ButtonGroup radioButtons;
+	//private JRadioButton baseButton;
+	//private JRadioButton diffButton;
+	//private JRadioButton intButton;
+	//private ButtonGroup radioButtons;
 	private JButton runButton;
 	
 	public FrameCore()
@@ -49,15 +49,15 @@ public class FrameCore extends JFrame
 		
 		informLabel = new JLabel("Equation:");
 		equationEntry = new JTextField(5);
-		baseButton = new JRadioButton("Base");
-		diffButton = new JRadioButton("Diff");
-		intButton = new JRadioButton("Int");
+		//baseButton = new JRadioButton("Base");
+		//diffButton = new JRadioButton("Diff");
+		//intButton = new JRadioButton("Int");
 		runButton = new JButton("Run");
-		radioButtons = new ButtonGroup();
+		//radioButtons = new ButtonGroup();
 		
-		radioButtons.add(baseButton);
-		radioButtons.add(diffButton);
-		radioButtons.add(intButton);
+		//radioButtons.add(baseButton);
+		//radioButtons.add(diffButton);
+		//radioButtons.add(intButton);
 		
 		groupLayout.setAutoCreateGaps(true);
 		groupLayout.setAutoCreateContainerGaps(true);
@@ -67,11 +67,7 @@ public class FrameCore extends JFrame
 							.addGroup(groupLayout.createSequentialGroup()
 									.addComponent(informLabel)
 									.addGroup(groupLayout.createParallelGroup()
-											.addComponent(equationEntry)
-											.addGroup(groupLayout.createSequentialGroup()
-													.addComponent(baseButton)
-													.addComponent(diffButton)
-													.addComponent(intButton)))
+											.addComponent(equationEntry))
 									.addComponent(runButton))
 				);
 		groupLayout.setVerticalGroup
@@ -81,11 +77,6 @@ public class FrameCore extends JFrame
 									.addComponent(informLabel)
 									.addComponent(equationEntry)
 									.addComponent(runButton))
-							
-							.addGroup(groupLayout.createParallelGroup()
-									.addComponent(baseButton)
-									.addComponent(diffButton)
-									.addComponent(intButton))
 				);
 		
 		runButton.addActionListener(new ActionListener()
@@ -95,25 +86,12 @@ public class FrameCore extends JFrame
 					{
 						if(!equationEntry.getText().equals(""))
 						{
-							if(baseButton.isSelected())
-							{
-								MusicHandler musicHandler = new MusicHandler(equationEntry.getText());
-								musicHandler.evaluateBase();
-							}
-							else if(diffButton.isSelected())
-							{
-								MusicHandler musicHandler = new MusicHandler("DIFF(" + equationEntry.getText() + ",x)");
-								musicHandler.evaluateCalc();
-							}
-							else if(intButton.isSelected())
-							{
-								MusicHandler musicHandler = new MusicHandler("INT(" + equationEntry.getText() + ",x)");
-								musicHandler.evaluateCalc();
-							}
-							else
-							{
-								JOptionPane.showMessageDialog(null, Configuration.POPUP_WINDOW_NOTICE);
-							}
+							MusicHandler musicHandler = new MusicHandler(equationEntry.getText());
+							musicHandler.evaluateBase();
+						}
+						else
+						{
+							
 						}
 					}
 				});
