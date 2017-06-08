@@ -70,17 +70,18 @@ public class MusicHandler
 			return;
 		}
 		
-		
+		System.out.println(evaluated.toString());
 		CalcObject tempobject = new CalcFunction(new CalcSymbol("calcsymbol", new CalcNullEvaluator(), 0x0400), evaluated, new CalcSymbol("x", new CalcNullEvaluator(), 0x0400));
 		CalcPLOT graph = new CalcPLOT();
 		graph.evaluate((CalcFunction) tempobject);
 		
 		for(int i = 0; i < values.length; i++)
 		{
-			CalcObject result = CalcSUB.numericSubstitute(evaluated, new CalcSymbol("x", new CalcNullEvaluator(), 0x0400), new CalcDouble(i));
-			System.out.println(result.toString());
+			CalcObject result = CalcSUB.numericSubstitute(evaluated, new CalcSymbol("x", new CalcNullEvaluator(), 0x0400), new CalcDouble(i * Configuration.NUMERIC_SPACING));
+			
 			try
 			{
+				System.out.println(result.evaluate().toString());
 				values[i] = Double.parseDouble(result.evaluate().toString());
 			}
 			catch(Exception e)

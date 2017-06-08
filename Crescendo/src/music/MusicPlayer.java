@@ -13,27 +13,27 @@ public class MusicPlayer extends Thread
 	
 	public void run()
 	{
-		double maxvalue = 0;
-		double minvalue = 0;
+		double maxvalue = Math.abs(fvalues[0]);
+		double minvalue = Math.abs(fvalues[0]);
 		String string = "";
-		for(int i = 0; i<fvalues.length; i++)
+		for(int i = 1; i<fvalues.length; i++)
 		{
-			if(fvalues[i]> maxvalue)
+			if(Math.abs(fvalues[i]) > maxvalue)
 			{
 				maxvalue = fvalues[i];
 			
 			}
-			if(fvalues[i]< minvalue)
+			if(Math.abs(fvalues[i]) < minvalue)
 			{
 				minvalue = fvalues[i];
 			
 			}
 				
 		}
+		System.out.println("Min " + minvalue);
 		for(int i = 0; i < fvalues.length - 1; i++)
 		{
-			int tempint = (int) Math.ceil((fvalues[i]-minvalue)/maxvalue*7);
-			//System.out.println(tempint);
+			int tempint = (int) Math.ceil((fvalues[i]-minvalue)/(maxvalue != 0 ? maxvalue : 1)*7);
 			switch(tempint)
 			{
 			case 1:
@@ -61,7 +61,7 @@ public class MusicPlayer extends Thread
 				string += "C ";
 				break;
 			}
-			System.out.print(tempint + "");
+			System.out.print(tempint + " ");
 		}
 		
 		System.out.println("\n" + string);

@@ -1,7 +1,6 @@
 package control;
 
 import display.DisplayIO;
-import display.FrameCore;
 
 public class TaskMain
 {

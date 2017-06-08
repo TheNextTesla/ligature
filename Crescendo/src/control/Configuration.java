@@ -14,6 +14,7 @@ public final class Configuration
 	public static final String POPUP_WINDOW_NOTICE = "Please Select an Option";
 	public static final String POPUP_ERROR_NOTICE = "Error - Check Your Input";
 	
+	public static final double NUMERIC_SPACING = 0.5;
 	public static final int NUMBER_OF_RUNS = 22;
 	
 	private Configuration() {};
