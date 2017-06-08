@@ -18,6 +18,8 @@ public class MusicHandler
 	private String string;
 	private double[] values;
 	
+	private MusicPlayer musicPlayer;
+	
 	public MusicHandler(String instring)
 	{
 		string = fixcase(instring);
@@ -79,7 +81,6 @@ public class MusicHandler
 			System.out.println(result.toString());
 			try
 			{
-
 				values[i] = Double.parseDouble(result.evaluate().toString());
 			}
 			catch(Exception e)
@@ -89,6 +90,12 @@ public class MusicHandler
 			}
 		}
 		
-		new MusicPlayer(values).start();;
+		musicPlayer = new MusicPlayer(values);
+		musicPlayer.start();
+	}
+	
+	public MusicPlayer getMusicPlayer()
+	{
+		return musicPlayer;
 	}
 }

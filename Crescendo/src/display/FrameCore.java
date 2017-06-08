@@ -42,6 +42,7 @@ public class FrameCore extends JFrame
 		this.setMaximumSize(new Dimension(Configuration.WINDOWS_SIZE_MAX_WIDTH, Configuration.WINDOW_SIZE_MAX_HEIGHT));
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setTitle(Configuration.WINDOW_NAME_DEFAULT);
+		this.setLocationRelativeTo(null);
 		
 		panelCore = new PanelCore();
 		GroupLayout groupLayout = new GroupLayout(panelCore);
